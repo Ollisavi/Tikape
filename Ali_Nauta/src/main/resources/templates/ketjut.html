@@ -1,0 +1,75 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>AliNauta</title>
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous"></link>
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">AliNauta</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-8">
+                    <a href="/">Alue</a>
+                    <small> /</small>
+                    <span class="active" th:text="|${alue}|"></span>
+                </div>
+                <div class="col-lg-2"><span>Viimeisin viesti</span></div>
+                <div class="col-lg-2"><span>Viestit</span></div>
+            </div>
+        </div>
+        <div class="list-group">
+            <a class="list-group-item" th:each="viestiketju : ${viestiketjut}"
+               th:href="|/alue/ketju/${viestiketju.id}|">
+                <div class="row">
+                    <div class="col-md-8"><span th:text="${viestiketju.otsikko}">Essi esimerkki</span></div>
+                    <div class="col-md-2"><span>ei toimi</span></div>
+                    <div class="col-md-2"><span class="badge" th:text="${viestiketju.viestienMaara}"></span></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!--<form class="form-horizontal col-md-6" method="POST" th:action="|/alue/${alueId}|">-->
+        <!--<div class="form-group">-->
+            <!--<input type="text" name="ketju" class="form-control" placeholder="Ketjun nimi"></input>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<textarea class="form-control" rows="5" name="viesti" placeholder="Aloitusviesti"></textarea>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<input type="text" name="nimim" class="form-control" placeholder="Nimimerkki"></input>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<button type="submit" class="btn btn-primary">Lisää viestiketju</button>-->
+        <!--</div>-->
+    <!--</form>-->
+
+    <form class="form-inline" method="POST" th:action="|/alue/${alueId}|">
+        <div class="form-group">
+            <input type="text" name="ketju" class="form-control"></input>
+            <button type="submit" class="btn btn-primary">Lisää viestiketju</button>
+        </div>
+    </form>
+
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+</body>
+</html>
